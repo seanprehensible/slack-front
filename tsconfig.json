@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    /* Projects */
+
+    /* Language and Environment */
+    "target": "es5" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": [
+      "ES2020",
+      "DOM"
+    ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
+    "jsx": "react" /* Specify what JSX code is generated. */,
+
+    /* Modules */
+    "module": "esnext" /* Specify what module code is generated. */,
+    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
+    "paths": {
+      "pages/*": ["./pages/*"],
+      "components/*": ["./components/*"],
+      "layouts/*": ["./layouts/*"],
+      "utils/*": ["./utils/*"],
+      "hooks/*": ["./hooks/*"],
+      "typings/*": ["./typings/*"]
+    } /* Specify a set of entries that re-map imports to additional lookup locations. */,
+    "resolveJsonModule": true /* Enable importing .json files */,
+
+    /* JavaScript Support */
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
+
+    /* Emit */
+    "sourceMap": true /* Create source map files for emitted JavaScript files. */,
+
+    /* Interop Constraints */
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
+
+    /* Type Checking */
+    "strict": true /* Enable all strict type-checking options. */
+
+    /* Completeness */
+  },
+  "exclude": ["node_modules"]
+}
