@@ -15,12 +15,12 @@
     "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
-      "pages/*": ["./pages/*"],
-      "components/*": ["./components/*"],
-      "layouts/*": ["./layouts/*"],
-      "utils/*": ["./utils/*"],
-      "hooks/*": ["./hooks/*"],
-      "typings/*": ["./typings/*"]
+      "@pages/*": ["./pages/*"],
+      "@components/*": ["./components/*"],
+      "@layouts/*": ["./layouts/*"],
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@typings/*": ["./typings/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "resolveJsonModule": true /* Enable importing .json files */,
 
