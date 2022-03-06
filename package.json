@@ -4,6 +4,7 @@
   "description": "슬랙 클론코딩 프론트 서버",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack server --env development",
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack"
   },
   "repository": {
@@ -33,14 +34,18 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@types/node": "^17.0.21",
     "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.3",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.1",
     "prettier": "^2.5.1",
+    "react-fresh": "^0.1.4",
     "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }

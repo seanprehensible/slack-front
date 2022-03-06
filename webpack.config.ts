@@ -1,12 +1,12 @@
 import path from 'path';
-// import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
-// import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-// import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {
-  // devServer?: WebpackDevServerConfiguration;
+  devServer?: WebpackDevServerConfiguration;
 }
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -50,17 +50,17 @@ const config: Configuration = {
             '@babel/preset-react',
             '@babel/preset-typescript',
           ],
-          // env: {
-          //   development: {
-          //     plugins: [
-          //       ['@emotion/babel-plugin', { sourceMap: true }],
-          //       require.resolve('react-refresh/babel'),
-          //     ],
-          //   },
-          //   production: {
-          //     plugins: ['@emotion/babel-plugin'],
-          //   },
-          // },
+          env: {
+            development: {
+              plugins: [
+                // ['@emotion/babel-plugin', { sourceMap: true }],
+                require.resolve('react-refresh/babel'),
+              ],
+            },
+            production: {
+              // plugins: ['@emotion/babel-plugin'],
+            },
+          },
         },
       },
       {
@@ -72,12 +72,13 @@ const config: Configuration = {
   },
   /* 확장 프로그램 */
   plugins: [
-    // new ForkTsCheckerWebpackPlugin({
-    //   async: false,
-    //   // eslint: {
-    //   //   files: "./src/**/*",
-    //   // },
-    // }),
+    // 타입 체크와 웹팩 실행이 병렬적으로 실행되도록 해줌
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      // eslint: {
+      //   files: "./src/**/*",
+      // },
+    }),
     // process.env.NODE_ENV를 프론트엔드에서 접근 가능하도록 설정
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
   ],
@@ -88,35 +89,35 @@ const config: Configuration = {
     publicPath: '/dist/',
   },
   /* 웹팩 데브 서버 */
-  // devServer: {
-  //   historyApiFallback: true,
-  //   port: 3090,
-  //   devMiddleware: { publicPath: '/dist/' },
-  //   static: { directory: path.resolve(__dirname) },
-  //   proxy: {
-  //     '/api/': {
-  //       target: 'http://localhost:3095',
-  //       changeOrigin: true,
-  //       ws: true,
-  //     },
-  //   },
-  // },
+  devServer: {
+    historyApiFallback: true, // react-router
+    port: 3090,
+    devMiddleware: { publicPath: '/dist/' },
+    static: { directory: path.resolve(__dirname) },
+    // proxy: {
+    //   '/api/': {
+    //     target: 'http://localhost:3095',
+    //     changeOrigin: true,
+    //     ws: true,
+    //   },
+    // },
+  },
 };
 
-// if (isDevelopment && config.plugins) {
-//   config.plugins.push(new webpack.HotModuleReplacementPlugin());
-//   config.plugins.push(
-//     new ReactRefreshWebpackPlugin({
-//       overlay: {
-//         useURLPolyfill: true,
-//       },
-//     })
-//   );
-//   config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }));
-// }
-// if (!isDevelopment && config.plugins) {
-//   config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
-//   config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }));
-// }
+if (isDevelopment && config.plugins) {
+  config.plugins.push(new webpack.HotModuleReplacementPlugin());
+  config.plugins.push(
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        useURLPolyfill: true,
+      },
+    })
+  );
+  // config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: false }));
+}
+if (!isDevelopment && config.plugins) {
+  config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
+  // config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }));
+}
 
 export default config;
