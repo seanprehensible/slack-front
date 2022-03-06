@@ -53,12 +53,12 @@ const config: Configuration = {
           env: {
             development: {
               plugins: [
-                // ['@emotion/babel-plugin', { sourceMap: true }],
+                ['@emotion/babel-plugin', { sourceMap: true }],
                 require.resolve('react-refresh/babel'),
               ],
             },
             production: {
-              // plugins: ['@emotion/babel-plugin'],
+              plugins: ['@emotion/babel-plugin'],
             },
           },
         },
