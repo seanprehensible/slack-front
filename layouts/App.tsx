@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LogIn from '@pages/LogIn';
-import SignUp from '@pages/SignUp';
+import loadable from '@loadable/component';
+
+/* 페이지 단위 코드 스플리팅 */
+const LogIn = loadable(() => import('@pages/LogIn'));
+const SignUp = loadable(() => import('@pages/SignUp'));
 
 const App: FC = () => {
   return (
